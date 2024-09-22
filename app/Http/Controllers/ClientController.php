@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function getAll()
     {
-        $clientData = Client::where('status',1)->paginate();
+        $clientData = Client::where('deleted_at',null)->paginate();
         return ClientResource::collection($clientData);
     }
 
@@ -29,22 +29,28 @@ class ClientController extends Controller
     public function post(Request $request)
     {
         try{
-            $this->validation($request->all());
+            $validation = $this->validation($request->all());
+            if(!empty($validation)){
+                throw new Exception('Error to create Client. '.$validation->content(),403);
+            }
             try{
                 $client = Client::create($request->all());
                 return new ClientResource($client);
             }catch (Exception $e) {
-                return response()->json(['message' => 'Error to create client. '.$e, 'error' => 401]);
+                return response()->json(['message' => 'Error to create client. '.$e, 'error' => 403]);
             }
         }catch (Exception $e){
-            return response()->json(['error' => $e->getMessage()],401);
+            return response()->json(['error' => $e->getMessage()],403);
         }
     }
 
     public function put(Request $request, int $id)
     {
         try{
-            $this->validation($request->all());
+            $validation = $this->validation($request->all());
+            if(!empty($validation)){
+                throw new Exception('Error to update Client. '.$validation->content(),403);
+            }
             try{
                 $client = Client::findOrFail($id);
                 $client->name = $request->input('name');
@@ -59,24 +65,23 @@ class ClientController extends Controller
                 if($client->save()){
                     return new ClientResource($client);
                 }else{
-                    throw new Exception('Error to update client',401);
+                    throw new Exception('Error to update client',403);
                 }
             }catch (Exception $e) {
-                return response()->json(['message' => 'Error to create client. '.$e, 'error' => 401]);
+                return response()->json(['message' => 'Error to update client. '.$e, 'error' => 403]);
             }
         }catch (Exception $e){
-            return response()->json(['error' => $e->getMessage()],401);
+            return response()->json(['error' => $e->getMessage()],403);
         }
     }
 
     public function delete($id){
         try {
             $client = Client::findOrFail($id);
-            $client->status = 0;
-            if($client->save()){
+            if($client->delete()){
                 return response(null,200);
             }else{
-                throw new Exception('Error to delete client',401);
+                throw new Exception('Error to delete client',403);
             }
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()],500);
@@ -95,7 +100,7 @@ class ClientController extends Controller
                 'zip_code' => 'required'
             ]);
             if($validator->fails()){
-                throw new Exception($validator->errors(),401);
+                throw new Exception($validator->errors(),403);
             }
         }catch (Exception $e){
             return response()->json(['error' => $e->getMessage()],$e->getCode());

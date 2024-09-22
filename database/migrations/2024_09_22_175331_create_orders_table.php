@@ -11,16 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone');
-            $table->date('date_born');
-            $table->string('address');
-            $table->string('complement');
-            $table->string('district');
-            $table->string('zip_code');
+            $table->foreignId('client_id')->references('id')->on('clients')->onDelete('restrict');
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('restrict');
             $table->softDeletes();
             $table->timestamps();
         });
@@ -31,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('orders');
     }
 };
