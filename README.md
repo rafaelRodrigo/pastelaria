@@ -22,3 +22,5 @@ Run - php artisan serve  <br><br>
 run - php artisan test tests/Unit/ClientTest.php  <br><br>
 run - php artisan test tests/Unit/ProductTest.php <br><br>
 run - php artisan test tests/Unit/OrderTest.php   <br><br>
+
+<br><br> Collection do postman para uso de testes Pastelaria.postman_collection.json <br><br>
