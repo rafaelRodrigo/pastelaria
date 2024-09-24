@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('product_orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('type_product_id')->references('id')->on('types_products')->onDelete('restrict');
-            $table->string('name');
-            $table->decimal('price');
-            $table->string('photo');
-            $table->softDeletes();
+            $table->foreignId('order_id')->references('id')->on('orders')->onDelete('restrict');
+            $table->foreignId('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('product_orders');
     }
 };

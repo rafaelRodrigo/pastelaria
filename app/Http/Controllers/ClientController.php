@@ -7,6 +7,7 @@ use App\Models\Client;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class ClientController extends Controller
 {
@@ -29,16 +30,23 @@ class ClientController extends Controller
     public function post(Request $request)
     {
         try{
-            $validation = $this->validation($request->all());
-            if(!empty($validation)){
-                throw new Exception('Error to create Client. '.$validation->content(),403);
+            try{
+                $validation = $this->validation($request->all());
+                if(!empty($validation)){
+                    throw new Exception('Error to create Client. '.$validation->content(),403);
+                }
+            }catch (Exception $e) {
+                throw new Exception('Error to create Client. '.$e,403);
             }
             try{
                 $client = Client::create($request->all());
-                return new ClientResource($client);
+                if(empty($client)){
+                    throw new Exception('Error to create Client. ',403);
+                }
             }catch (Exception $e) {
-                return response()->json(['message' => 'Error to create client. '.$e, 'error' => 403]);
+                throw new Exception('Error to create Client. '.$e,403);
             }
+            return new ClientResource($client);
         }catch (Exception $e){
             return response()->json(['error' => $e->getMessage()],403);
         }
@@ -47,6 +55,14 @@ class ClientController extends Controller
     public function put(Request $request, int $id)
     {
         try{
+            try{
+                $validation = $this->validation($request->all());
+                if(!empty($validation)){
+                    throw new Exception('Error to update Client. '.$validation->content(),403);
+                }
+            }catch (Exception $e) {
+                throw new Exception('Error to update Client. '.$e,403);
+            }
             $validation = $this->validation($request->all());
             if(!empty($validation)){
                 throw new Exception('Error to update Client. '.$validation->content(),403);
@@ -68,7 +84,7 @@ class ClientController extends Controller
                     throw new Exception('Error to update client',403);
                 }
             }catch (Exception $e) {
-                return response()->json(['message' => 'Error to update client. '.$e, 'error' => 403]);
+                throw new Exception('Error to update Client. '.$e,403);
             }
         }catch (Exception $e){
             return response()->json(['error' => $e->getMessage()],403);
@@ -92,8 +108,11 @@ class ClientController extends Controller
         try{
             $validator = Validator::make($data,[
                 'name' => 'required',
-                'email' => 'required|email',
-                'phone' => 'required',
+                'email' => [
+                    'required',
+                    'email',
+                ],
+                'phone' => 'required|phone:BR',
                 'date_born' => 'required',
                 'address' => 'required',
                 'district' => 'required',

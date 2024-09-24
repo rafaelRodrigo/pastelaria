@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('number_order');
             $table->foreignId('client_id')->references('id')->on('clients')->onDelete('restrict');
-            $table->foreignId('product_id')->references('id')->on('products')->onDelete('restrict');
+            $table->string('order_status');
             $table->softDeletes();
             $table->timestamps();
         });

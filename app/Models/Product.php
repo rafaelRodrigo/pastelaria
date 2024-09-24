@@ -13,6 +13,7 @@ class Product extends Model
 
     protected $dates = ['deleted_at'];
     protected $fillable = [
+        'type_product_id',
         'name',
         'price',
         'photo'

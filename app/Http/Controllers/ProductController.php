@@ -32,14 +32,17 @@ class ProductController extends Controller
         try{
             $validation = $this->validation($request->all());
             if(!empty($validation)){
-                throw new Exception('Error to create Produc. '.$validation->content(),403);
+                throw new Exception('Error to create Product. '.$validation->content(),403);
             }
             try{
                 $product = Product::create($request->all());
-                return new ProductResource($product);
+                if(empty($product)){
+                    throw new Exception('Error to create Product. ',403);
+                }
             }catch (Exception $e) {
-                return response()->json(['message' => 'Error to create product. '.$e, 'error' => 403]);
+                throw new Exception('Error to create Product. '.$e,403);
             }
+            return new ProductResource($product);
         }catch (Exception $e){
             return response()->json(['error' => $e->getMessage()],403);
         }
@@ -54,6 +57,7 @@ class ProductController extends Controller
             }
             try{
                 $product = Product::findOrFail($id);
+                $product->name = $request->input('type_product_id');
                 $product->name = $request->input('name');
                 $product->price = $request->input('price');
                 $product->photo = $request->input('photo');
@@ -87,6 +91,7 @@ class ProductController extends Controller
     public function validation($data){
         try{
             $validator = Validator::make($data,[
+                'type_product_id' => 'required|integer',
                 'name' => 'required',
                 'price' => 'required',
                 'photo' => 'required'
