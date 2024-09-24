@@ -1,0 +1,415 @@
+{
+	"info": {
+		"_postman_id": "56413854-4576-41f8-9733-3a78d9e1812c",
+		"name": "Pastelaria",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3735535",
+		"_collection_link": "https://gold-rocket-1136.postman.co/workspace/Team-Workspace~6bd36a17-361f-417f-8aef-a1d039eba197/collection/3735535-56413854-4576-41f8-9733-3a78d9e1812c?action=share&source=collection_link&creator=3735535"
+	},
+	"item": [
+		{
+			"name": "Cliente",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/client",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/client/1",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"semeao 1\",\r\n    \"email\": \"rafael.semea1@teste.com\",\r\n    \"phone\": \"(11)96391-8459\",  \r\n    \"date_born\": \"1987-07-13\",\r\n    \"address\": \"Rua do teste\",\r\n    \"complement\": \"casa\",\r\n    \"district\": \"Bairro TEst\",\r\n    \"zip_code\": \"12345-000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/client",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"client"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"semeao 1 update\",\r\n    \"email\": \"rafael.semea0@teste.com\",\r\n    \"phone\": \"(11)96391-8459\",  \r\n    \"date_born\": \"1987-07-13\",\r\n    \"address\": \"Rua do teste\",\r\n    \"complement\": \"casa\",\r\n    \"district\": \"Bairro teste\",\r\n    \"zip_code\": \"12345-000\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/client/61",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"61"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/client/40",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"client",
+								"40"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Produtos",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/product",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/product/7",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type_product_id\": 1,\r\n    \"name\": \"produtos teste \",\r\n    \"price\": \"5.55\",\r\n    \"photo\": \"php.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/product",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"type_product_id\": 1,\r\n    \"name\": \"teste produto\",\r\n    \"price\": \"5.25\",\r\n    \"photo\": \"php.jpg\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/product/2",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/product/5",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"product",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pedidos",
+			"item": [
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/order",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{pastelaria}}/api/order/2",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\":1,\r\n    \"products\":[\r\n        {\r\n            \"id\":1,\r\n            \"quantity\":2\r\n        },\r\n        {\r\n            \"id\":4,\r\n            \"quantity\":1\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/order",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"client_id\":63,\r\n    \"products\":[\r\n        {\r\n            \"id\":1,\r\n            \"quantity\":5\r\n        },\r\n        {\r\n            \"id\":4,\r\n            \"quantity\":57\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/order/3",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{pastelaria}}/api/order/5",
+							"host": [
+								"{{pastelaria}}"
+							],
+							"path": [
+								"api",
+								"order",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "pastelaria",
+			"value": "http://127.0.0.1:8000",
+			"type": "string"
+		}
+	]
+}
