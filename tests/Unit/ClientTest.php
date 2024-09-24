@@ -254,9 +254,13 @@ class ClientTest extends TestCase
         $response->assertStatus(403);
         // **** sem o sem o cep **** /////
 
+        // Gera um e-mail aleatório usando o Faker
+        $faker = \Faker\Factory::create();
+        $randomEmail = $faker->unique()->safeEmail;
+
         $arrData = [
             'name' => 'semeao 1',
-            'email' => 'rafael.semea0@teste.com',
+            'email' => $randomEmail,
             'phone' => '(11)96391-8459',
             'date_born' => '1987-07-13',
             'address' => 'Rua do teste',
@@ -529,7 +533,7 @@ class ClientTest extends TestCase
 
         $arrData = [
             'name' => 'semeao 1 update',
-            'email' => 'rafael.semea0@teste.com',
+            'email' => $data['data']['email'],
             'phone' => '(11)96391-8459',
             'date_born' => '1987-07-13',
             'address' => 'Rua do teste',
